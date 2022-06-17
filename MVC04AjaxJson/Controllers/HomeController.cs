@@ -63,6 +63,37 @@ namespace MVC04AjaxJson.Controllers
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult Demo03()
+        {
+            Telefonos t1 = new Telefonos();
+            Telefonos t2 = new Telefonos();
+            Telefonos t3 = new Telefonos();
+
+            t1.numero = "999627956";
+            t1.costo = 700;
+            t1.activo = true;
+
+            t2.numero = "988627956";
+            t2.costo = 800;
+            t2.activo = true;
+
+            t3.numero = "785627956";
+            t3.costo = 750;
+            t3.activo = false;
+
+            Clientes cliente = new Clientes();
+            cliente.nombre = "Alicia Neruda";
+            cliente.telefonos = new Telefonos[] { t1, t2, t3 };
+
+            return Json(cliente, JsonRequestBehavior.AllowGet);
+        }
+
+        private class Clientes
+        {
+            public string nombre { get; set; }
+            public Telefonos[] telefonos { get; set; }
+        }
+
         private class Telefonos
         {
             public string numero { get; set; }
